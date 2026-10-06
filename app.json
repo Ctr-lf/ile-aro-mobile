@@ -1,20 +1,22 @@
 {
   "expo": {
-    "name": "ile-aro-mobile",
+    "name": "Ilé Aró",
     "slug": "ile-aro-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "ilearomobile",
-    "userInterfaceStyle": "automatic",
+    "scheme": "ilearo",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FAF7F2",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "bundleIdentifier": "com.ctrlf.ilearo",
+      "supportsTablet": true
     },
     "android": {
+      "package": "com.ctrlf.ilearo",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#F3ECE2",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false
@@ -28,15 +30,23 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#FAF7F2",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 200
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "de45fb57-b63c-4a75-bcf0-a3bd63cd19dc"
+      }
+    },
+    "owner": "ctrlf"
   }
 }
