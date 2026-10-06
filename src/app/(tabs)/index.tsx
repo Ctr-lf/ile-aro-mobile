@@ -211,8 +211,8 @@ export default function HomeScreen() {
                   data={data.newArrivals}
                   keyExtractor={(p) => p.id}
                   showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{ paddingHorizontal: gutter, gap: 12, paddingBottom: 4 }}
-                  renderItem={({ item }) => <ProductCard product={item} isNew style={{ width: 168 }} />}
+                  contentContainerStyle={{ paddingHorizontal: gutter, gap: 12, paddingBottom: 4, alignItems: "flex-start" }}
+                  renderItem={({ item }) => <ProductCard product={item} isNew rail />}
                 />
               </View>
             )}

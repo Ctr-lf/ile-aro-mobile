@@ -136,8 +136,8 @@ export default function ProductScreen() {
               data={related}
               keyExtractor={(p) => p.id}
               showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingHorizontal: gutter, gap: 12, paddingBottom: 4 }}
-              renderItem={({ item }) => <ProductCard product={item} style={{ width: 168 }} />}
+              contentContainerStyle={{ paddingHorizontal: gutter, gap: 12, paddingBottom: 4, alignItems: "flex-start" }}
+              renderItem={({ item }) => <ProductCard product={item} rail />}
             />
           </View>
         )}

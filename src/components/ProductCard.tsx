@@ -8,8 +8,22 @@ import { ProductImage } from "./ProductImage";
 import { Caption } from "./Text";
 import { useToast } from "./Toast";
 
-/** Product card: photo, category, name, unit and price, with a quick "add one" button on the photo. */
-export function ProductCard({ product, isNew = false, style }: { product: Product; isNew?: boolean; style?: StyleProp<ViewStyle> }) {
+/**
+ * Product card: photo, category, name, unit and price, with a quick "add one" button on the photo.
+ * In a grid the card grows to match its neighbour's height; `rail` is for side-scrolling rows,
+ * where the card is a fixed width and only as tall as its content.
+ */
+export function ProductCard({
+  product,
+  isNew = false,
+  rail = false,
+  style,
+}: {
+  product: Product;
+  isNew?: boolean;
+  rail?: boolean;
+  style?: StyleProp<ViewStyle>;
+}) {
   const { add } = useToast();
   const stock = stockLabel(product.stock);
 
@@ -20,7 +34,7 @@ export function ProductCard({ product, isNew = false, style }: { product: Produc
       onPress={() => router.push({ pathname: "/product/[slug]", params: { slug: product.slug } })}
       style={({ pressed }) => [
         {
-          flex: 1,
+          ...(rail ? { width: 168, alignSelf: "flex-start" as const } : { flexGrow: 1 }),
           backgroundColor: colors.surface,
           borderRadius: radius.md,
           borderWidth: 1,
@@ -61,7 +75,7 @@ export function ProductCard({ product, isNew = false, style }: { product: Produc
           <Plus size={18} color={colors.ink} strokeWidth={1.75} />
         </Pressable>
       </View>
-      <View style={{ padding: 12, gap: 3, flex: 1 }}>
+      <View style={{ padding: 12, gap: 3, flexGrow: 1 }}>
         <Caption numberOfLines={1}>{product.category?.name}</Caption>
         <Text numberOfLines={2} style={{ fontFamily: fonts.bodyMedium, fontSize: 14, lineHeight: 19, color: colors.ink }}>
           {product.name}
@@ -71,7 +85,7 @@ export function ProductCard({ product, isNew = false, style }: { product: Produc
             {product.unit}
           </Text>
         ) : null}
-        <View style={{ flex: 1 }} />
+        <View style={{ flexGrow: 1 }} />
         <View style={{ flexDirection: "row", alignItems: "baseline", justifyContent: "space-between", paddingTop: 6, gap: 6 }}>
           <Text style={{ fontFamily: fonts.bodySemibold, fontSize: 15, color: colors.ink }}>{formatNaira(product.price_ngn)}</Text>
           {stock.tone !== "in" && <Text style={{ fontFamily: fonts.body, fontSize: 11, color: colors.muted }}>{stock.text}</Text>}
